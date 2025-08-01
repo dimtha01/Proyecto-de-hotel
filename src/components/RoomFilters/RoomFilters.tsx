@@ -9,14 +9,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
-import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import {
+  Search,
+  RotateCcw,
+  Users,
+  Bed,
+  Eye,
+  DollarSign,
+  Filter,
+  X,
+  Waves,
+  Building,
+  Leaf,
+  Mountain,
+} from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface RoomFiltersProps {
   onFilterChange: (filters: {
     capacity?: number;
     bedType?: string;
     view?: string;
+    priceRange?: { min: number; max: number };
+    amenities?: string[];
   }) => void;
 }
 
@@ -24,92 +40,420 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
   const [capacity, setCapacity] = useState<number | undefined>(undefined);
   const [bedType, setBedType] = useState<string | undefined>(undefined);
   const [view, setView] = useState<string | undefined>(undefined);
+  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const amenitiesList = [
+    { id: "Wi-Fi", label: "Wi-Fi", icon: "📶" },
+    { id: "TV", label: "TV", icon: "📺" },
+    { id: "AC", label: "Aire Acondicionado", icon: "❄️" },
+    { id: "Minibar", label: "Minibar", icon: "🍾" },
+    { id: "Balcony", label: "Balcón", icon: "🏞️" },
+    { id: "Jacuzzi", label: "Jacuzzi", icon: "🛁" },
+  ];
+
+  const viewOptions = [
+    {
+      value: "Ocean",
+      label: "Océano",
+      icon: <Waves className="w-4 h-4 text-blue-500" />,
+    },
+    {
+      value: "City",
+      label: "Ciudad",
+      icon: <Building className="w-4 h-4 text-gray-600" />,
+    },
+    {
+      value: "Garden",
+      label: "Jardín",
+      icon: <Leaf className="w-4 h-4 text-green-500" />,
+    },
+    {
+      value: "Mountain",
+      label: "Montaña",
+      icon: <Mountain className="w-4 h-4 text-amber-600" />,
+    },
+  ];
+
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (capacity) count++;
+    if (bedType) count++;
+    if (view) count++;
+    if (minPrice || maxPrice) count++;
+    if (selectedAmenities.length > 0) count++;
+    return count;
+  };
 
   const handleApplyFilters = () => {
-    onFilterChange({ capacity, bedType, view });
+    const priceRange =
+      minPrice || maxPrice
+        ? {
+            min: minPrice || 0,
+            max: maxPrice || 9999,
+          }
+        : undefined;
+
+    onFilterChange({
+      capacity,
+      bedType,
+      view,
+      priceRange,
+      amenities: selectedAmenities.length > 0 ? selectedAmenities : undefined,
+    });
   };
 
   const handleResetFilters = () => {
     setCapacity(undefined);
     setBedType(undefined);
     setView(undefined);
-    onFilterChange({}); // Reset filters
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
+    setSelectedAmenities([]);
+    onFilterChange({});
   };
 
+  const toggleAmenity = (amenityId: string) => {
+    setSelectedAmenities((prev) =>
+      prev.includes(amenityId)
+        ? prev.filter((id) => id !== amenityId)
+        : [...prev, amenityId]
+    );
+  };
+
+  const removeFilter = (filterType: string, value?: string) => {
+    switch (filterType) {
+      case "capacity":
+        setCapacity(undefined);
+        break;
+      case "bedType":
+        setBedType(undefined);
+        break;
+      case "view":
+        setView(undefined);
+        break;
+      case "price":
+        setMinPrice(undefined);
+        setMaxPrice(undefined);
+        break;
+      case "amenity":
+        if (value) {
+          setSelectedAmenities((prev) => prev.filter((id) => id !== value));
+        }
+        break;
+    }
+  };
+
+  // Auto-apply filters when they change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleApplyFilters();
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [capacity, bedType, view, minPrice, maxPrice, selectedAmenities]);
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-      <div>
-        <label
-          htmlFor="capacity"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Capacidad
-        </label>
-        <Input
-          id="capacity"
-          type="number"
-          placeholder="Ej. 2"
-          value={capacity || ""}
-          onChange={(e) =>
-            setCapacity(
-              e.target.value ? Number.parseInt(e.target.value) : undefined
-            )
-          }
-          className="w-full"
-        />
+    <div className="bg-white rounded-xl shadow-lg border border-gray-100 mb-8 overflow-hidden">
+      {/* Header with Filter Toggle */}
+      <div className="bg-gradient-to-r from-orange-50 to-orange-100 px-6 py-4 border-b border-orange-200">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-white rounded-lg shadow-sm">
+              <Filter className="w-5 h-5 text-orange-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-900">
+                Filtros de Búsqueda
+              </h3>
+              <p className="text-sm text-gray-600">
+                Encuentra tu habitación perfecta
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            {getActiveFiltersCount() > 0 && (
+              <Badge
+                variant="secondary"
+                className="bg-orange-100 text-orange-700"
+              >
+                {getActiveFiltersCount()} filtro
+                {getActiveFiltersCount() > 1 ? "s" : ""} activo
+                {getActiveFiltersCount() > 1 ? "s" : ""}
+              </Badge>
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-orange-600 hover:bg-orange-50"
+            >
+              {isExpanded ? "Menos filtros" : "Más filtros"}
+            </Button>
+          </div>
+        </div>
       </div>
-      <div>
-        <label
-          htmlFor="bedType"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Tipo de Cama
-        </label>
-        <Select onValueChange={setBedType} value={bedType}>
-          <SelectTrigger id="bedType" className="w-full">
-            <SelectValue placeholder="Seleccionar tipo" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="King">King</SelectItem>
-            <SelectItem value="Queen">Queen</SelectItem>
-            <SelectItem value="Twin">Twin</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div>
-        <label
-          htmlFor="view"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Vista
-        </label>
-        <Select onValueChange={setView} value={view}>
-          <SelectTrigger id="view" className="w-full">
-            <SelectValue placeholder="Seleccionar vista" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Ocean">Océano</SelectItem>
-            <SelectItem value="City">Ciudad</SelectItem>
-            <SelectItem value="Garden">Jardín</SelectItem>
-            <SelectItem value="Mountain">Montaña</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="flex gap-2">
-        <Button
-          onClick={handleApplyFilters}
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white"
-        >
-          <Search className="w-4 h-4 mr-2" />
-          Buscar
-        </Button>
-        <Button
-          onClick={handleResetFilters}
-          variant="outline"
-          className="w-full bg-transparent"
-        >
-          Restablecer
-        </Button>
+
+      {/* Active Filters Tags */}
+      {getActiveFiltersCount() > 0 && (
+        <div className="px-6 py-3 bg-gray-50 border-b border-gray-100">
+          <div className="flex flex-wrap gap-2">
+            {capacity && (
+              <Badge
+                variant="outline"
+                className="flex items-center gap-1 bg-white"
+              >
+                <Users className="w-3 h-3" />
+                {capacity} personas
+                <button
+                  onClick={() => removeFilter("capacity")}
+                  className="ml-1 hover:bg-gray-100 rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {bedType && (
+              <Badge
+                variant="outline"
+                className="flex items-center gap-1 bg-white"
+              >
+                <Bed className="w-3 h-3" />
+                Cama {bedType}
+                <button
+                  onClick={() => removeFilter("bedType")}
+                  className="ml-1 hover:bg-gray-100 rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {view && (
+              <Badge
+                variant="outline"
+                className="flex items-center gap-1 bg-white"
+              >
+                <Eye className="w-3 h-3" />
+                Vista {viewOptions.find((v) => v.value === view)?.label}
+                <button
+                  onClick={() => removeFilter("view")}
+                  className="ml-1 hover:bg-gray-100 rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {(minPrice || maxPrice) && (
+              <Badge
+                variant="outline"
+                className="flex items-center gap-1 bg-white"
+              >
+                <DollarSign className="w-3 h-3" />${minPrice || 0} - $
+                {maxPrice || "∞"}
+                <button
+                  onClick={() => removeFilter("price")}
+                  className="ml-1 hover:bg-gray-100 rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {selectedAmenities.map((amenity) => (
+              <Badge
+                key={amenity}
+                variant="outline"
+                className="flex items-center gap-1 bg-white"
+              >
+                <span>{amenitiesList.find((a) => a.id === amenity)?.icon}</span>
+                {amenitiesList.find((a) => a.id === amenity)?.label}
+                <button
+                  onClick={() => removeFilter("amenity", amenity)}
+                  className="ml-1 hover:bg-gray-100 rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Main Filters */}
+      <div className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {/* Capacity */}
+          <div className="space-y-2">
+            <label
+              htmlFor="capacity"
+              className="flex items-center gap-2 text-sm font-medium text-gray-700"
+            >
+              <Users className="w-4 h-4 text-orange-500" />
+              Capacidad
+            </label>
+            <Input
+              id="capacity"
+              type="number"
+              min="1"
+              max="10"
+              placeholder="Ej. 2"
+              value={capacity || ""}
+              onChange={(e) =>
+                setCapacity(
+                  e.target.value ? Number.parseInt(e.target.value) : undefined
+                )
+              }
+              className="w-full focus:ring-orange-500 focus:border-orange-500"
+            />
+          </div>
+
+          {/* Bed Type */}
+          <div className="space-y-2">
+            <label
+              htmlFor="bedType"
+              className="flex items-center gap-2 text-sm font-medium text-gray-700"
+            >
+              <Bed className="w-4 h-4 text-orange-500" />
+              Tipo de Cama
+            </label>
+            <Select onValueChange={setBedType} value={bedType}>
+              <SelectTrigger
+                id="bedType"
+                className="w-full focus:ring-orange-500 focus:border-orange-500"
+              >
+                <SelectValue placeholder="Seleccionar tipo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="King">
+                  <div className="flex items-center gap-2">
+                    <Bed className="w-4 h-4" />
+                    King
+                  </div>
+                </SelectItem>
+                <SelectItem value="Queen">
+                  <div className="flex items-center gap-2">
+                    <Bed className="w-4 h-4" />
+                    Queen
+                  </div>
+                </SelectItem>
+                <SelectItem value="Twin">
+                  <div className="flex items-center gap-2">
+                    <Bed className="w-4 h-4" />
+                    Twin
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* View */}
+          <div className="space-y-2">
+            <label
+              htmlFor="view"
+              className="flex items-center gap-2 text-sm font-medium text-gray-700"
+            >
+              <Eye className="w-4 h-4 text-orange-500" />
+              Vista
+            </label>
+            <Select onValueChange={setView} value={view}>
+              <SelectTrigger
+                id="view"
+                className="w-full focus:ring-orange-500 focus:border-orange-500"
+              >
+                <SelectValue placeholder="Seleccionar vista" />
+              </SelectTrigger>
+              <SelectContent>
+                {viewOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    <div className="flex items-center gap-2">
+                      {option.icon}
+                      {option.label}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Price Range */}
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+              <DollarSign className="w-4 h-4 text-orange-500" />
+              Rango de Precio
+            </label>
+            <div className="flex gap-2">
+              <Input
+                type="number"
+                placeholder="Min"
+                value={minPrice || ""}
+                onChange={(e) =>
+                  setMinPrice(
+                    e.target.value ? Number.parseInt(e.target.value) : undefined
+                  )
+                }
+                className="w-full focus:ring-orange-500 focus:border-orange-500"
+              />
+              <Input
+                type="number"
+                placeholder="Max"
+                value={maxPrice || ""}
+                onChange={(e) =>
+                  setMaxPrice(
+                    e.target.value ? Number.parseInt(e.target.value) : undefined
+                  )
+                }
+                className="w-full focus:ring-orange-500 focus:border-orange-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Expanded Filters */}
+        {isExpanded && (
+          <div className="border-t border-gray-100 pt-4 mt-4">
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <span>🏨</span>
+                Amenidades
+              </label>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                {amenitiesList.map((amenity) => (
+                  <button
+                    key={amenity.id}
+                    onClick={() => toggleAmenity(amenity.id)}
+                    className={`flex items-center gap-2 p-3 rounded-lg border transition-all duration-200 text-sm ${
+                      selectedAmenities.includes(amenity.id)
+                        ? "bg-orange-50 border-orange-200 text-orange-700"
+                        : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span className="text-lg">{amenity.icon}</span>
+                    <span className="font-medium">{amenity.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100">
+          <Button
+            onClick={handleApplyFilters}
+            className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md hover:shadow-lg transition-all duration-300"
+          >
+            <Search className="w-4 h-4 mr-2" />
+            Buscar Habitaciones
+          </Button>
+          <Button
+            onClick={handleResetFilters}
+            variant="outline"
+            className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            <RotateCcw className="w-4 h-4 mr-2" />
+            Limpiar Filtros
+          </Button>
+        </div>
       </div>
     </div>
   );

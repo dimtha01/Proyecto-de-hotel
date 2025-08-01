@@ -1,26 +1,264 @@
+import { useState, useEffect } from "react";
+import {
+  ChevronDown,
+  Star,
+  Award,
+  Users,
+  Building,
+  Calendar,
+  Globe,
+  Trophy,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+
 export const AboutUsHero = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const backgroundImages = [
+    "/images/aboutus-hero-1.jpg",
+    "/images/aboutus-hero-2.jpg",
+    "/images/aboutus-hero-3.jpg",
+  ];
+
+  const stats = [
+    { icon: <Calendar className="w-5 h-5" />, value: "15+", label: "Años" },
+    {
+      icon: <Trophy className="w-5 h-5" />,
+      value: "50+",
+      label: "Premios",
+    },
+    { icon: <Users className="w-5 h-5" />, value: "200+", label: "Equipo" },
+    { icon: <Globe className="w-5 h-5" />, value: "5", label: "Países" },
+  ];
+
+  useEffect(() => {
+    setIsLoaded(true);
+
+    // Auto-rotate background images every 8 seconds
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative h-[40vh] flex items-center justify-center text-center">
-      {/* Background Image - Using a placeholder for now, can be updated */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/placeholder.svg?height=800&width=1600')",
-        }}
-      >
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+    <section className="relative h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden">
+      {/* Background Images with Slideshow */}
+      <div className="absolute inset-0">
+        {backgroundImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-2000 ${
+              index === currentImageIndex ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ backgroundImage: `url('${image}')` }}
+          />
+        ))}
+
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 to-transparent" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 px-6">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
-          Sobre Nosotros
-        </h1>
-        <p className="text-xl text-white/90 max-w-2xl mx-auto">
-          Conoce la historia y los valores que nos hacen únicos.
-        </p>
+      {/* Floating Elements with Enhanced Animations */}
+      <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-32 right-16 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
+      <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
+
+      {/* Animated About Icons */}
+      <div className="absolute top-32 right-32 opacity-20">
+        <div className="animate-bounce delay-200">
+          <Building className="w-8 h-8 text-white/30" />
+        </div>
       </div>
+      <div className="absolute bottom-40 left-20 opacity-20">
+        <div
+          className="animate-bounce delay-700"
+          style={{ animationDirection: "reverse" }}
+        >
+          <Trophy className="w-6 h-6 text-emerald-300/40" />
+        </div>
+      </div>
+      <div className="absolute top-40 left-32 opacity-20">
+        <div className="animate-bounce delay-1000">
+          <Globe className="w-7 h-7 text-white/25" />
+        </div>
+      </div>
+      <div className="absolute bottom-28 right-40 opacity-20">
+        <div
+          className="animate-bounce delay-1500"
+          style={{ animationDirection: "reverse" }}
+        >
+          <Award className="w-6 h-6 text-teal-300/30" />
+        </div>
+      </div>
+
+      {/* Floating Heritage Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute w-2 h-2 bg-white/20 rounded-full animate-ping`}
+            style={{
+              top: `${18 + i * 11}%`,
+              left: `${8 + i * 10}%`,
+              animationDelay: `${i * 700}ms`,
+              animationDuration: "3s",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Content Container */}
+      <div className="relative z-10 px-6 max-w-5xl mx-auto">
+        {/* Breadcrumb */}
+        <div
+          className={`mb-6 transform transition-all duration-1000 delay-300 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/80 text-sm hover:bg-white/20 transition-all duration-300">
+            <Link to="/">Inicio</Link>
+            <ChevronDown className="w-4 h-4 mx-2 rotate-[-90deg]" />
+            <span className="text-white font-medium">Sobre Nosotros</span>
+          </div>
+        </div>
+
+        {/* Main Title with Enhanced Animations */}
+        <h1
+          className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transform transition-all duration-1000 delay-500 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
+          <span
+            className="block animate-fade-in-up"
+            style={{ animationDelay: "0.5s" }}
+          >
+            Sobre
+          </span>
+          <span
+            className="block bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 bg-clip-text text-transparent animate-fade-in-up animate-pulse"
+            style={{ animationDelay: "0.7s" }}
+          >
+            Nosotros
+          </span>
+          <span
+            className="block text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mt-2 animate-fade-in-up"
+            style={{ animationDelay: "0.9s" }}
+          >
+            Nuestra Historia
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p
+          className={`text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed transform transition-all duration-1000 delay-700 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
+          Conoce la{" "}
+          <span className="text-emerald-300 font-semibold">historia</span> y los{" "}
+          <span className="text-emerald-300 font-semibold">valores</span> que
+          nos hacen únicos.
+          <br className="hidden md:block" />
+          <span className="text-white/70 text-base md:text-lg block mt-2">
+            Una tradición de excelencia construida con pasión y dedicación
+          </span>
+        </p>
+
+        {/* Stats with Hover Animations */}
+        <div
+          className={`flex flex-wrap justify-center gap-6 md:gap-8 mb-10 transform transition-all duration-1000 delay-900 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group hover:scale-110 hover:rotate-1 cursor-pointer"
+              style={{ animationDelay: `${1000 + index * 200}ms` }}
+            >
+              <div className="text-emerald-300 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+                {stat.icon}
+              </div>
+              <div className="text-left">
+                <div className="text-white font-bold text-lg group-hover:text-emerald-200 transition-colors duration-300">
+                  {stat.value}
+                </div>
+                <div className="text-white/70 text-xs group-hover:text-white/90 transition-colors duration-300">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Buttons with Enhanced Animations */}
+        <div
+          className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-1100 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          <button className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1 animate-pulse hover:animate-none">
+            <span className="flex items-center gap-2">
+              Conocer Más
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-1 group-hover:rotate-180 transition-transform duration-300" />
+            </span>
+          </button>
+          <button className="px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105 active:scale-95 hover:rotate-1 hover:-translate-y-1">
+            Nuestro Equipo
+          </button>
+        </div>
+      </div>
+
+      {/* Image Indicators with Enhanced Animations */}
+      <div className="absolute bottom-20 right-8 flex flex-col gap-2">
+        {backgroundImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-8 rounded-full transition-all duration-300 hover:scale-110 hover:w-3 ${
+              index === currentImageIndex
+                ? "bg-emerald-400 shadow-lg animate-pulse"
+                : "bg-white/30 hover:bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Additional CSS animations */}
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
