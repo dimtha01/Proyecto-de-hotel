@@ -6,7 +6,7 @@ const flashDealsData = [
     name: "Escapada Romántica en Bali",
     originalPrice: 1200,
     discountedPrice: 899,
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/bali.jpg",
     description:
       "Disfruta de 3 noches en una villa privada con piscina, desayuno incluido y cena romántica.",
   },
@@ -15,7 +15,7 @@ const flashDealsData = [
     name: "Aventura Familiar en la Montaña",
     originalPrice: 950,
     discountedPrice: 699,
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/escalada.jpg",
     description:
       "Paquete de 4 días para toda la familia con actividades al aire libre y pensión completa.",
   },
@@ -24,7 +24,7 @@ const flashDealsData = [
     name: "Relajación en la Playa del Caribe",
     originalPrice: 1500,
     discountedPrice: 1099,
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/playas del caribe.jpg",
     description:
       "7 noches en un resort todo incluido frente al mar, con spa y deportes acuáticos.",
   },
@@ -33,7 +33,7 @@ const flashDealsData = [
     name: "City Break en París",
     originalPrice: 700,
     discountedPrice: 499,
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/paris.jpg",
     description:
       "3 días en un hotel boutique en el centro de París, cerca de las principales atracciones.",
   },

@@ -53,13 +53,13 @@ export const RoomCard = ({
   const getViewIcon = (viewType: string) => {
     switch (viewType) {
       case "Ocean":
-        return <Waves className="w-4 h-4 text-blue-500" />
+        return <Waves className="w-4 h-4 text-[#020659]" />
       case "City":
-        return <Building className="w-4 h-4 text-gray-600" />
+        return <Building className="w-4 h-4 text-[#020659]" />
       case "Garden":
-        return <Leaf className="w-4 h-4 text-green-500" />
+        return <Leaf className="w-4 h-4 text-[#020659]" />
       case "Mountain":
-        return <Mountain className="w-4 h-4 text-amber-600" />
+        return <Mountain className="w-4 h-4 text-[#020659]" />
       default:
         return null
     }
@@ -69,9 +69,9 @@ export const RoomCard = ({
     switch (amenity.toLowerCase()) {
       case "wi-fi":
       case "wifi":
-        return <Wifi className="w-3.5 h-3.5" />
+        return <Wifi className="w-3.5 h-3.5 text-[#020659]" />
       case "tv":
-        return <Tv className="w-3.5 h-3.5" />
+        return <Tv className="w-3.5 h-3.5 text-[#020659]" />
       default:
         return null
     }
@@ -95,12 +95,12 @@ export const RoomCard = ({
         {/* Overlay Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
           {isPopular && (
-            <Badge className="bg-red-500 text-white text-xs font-medium px-2 py-1">
+            <Badge className="bg-[#F20C1F] text-white text-xs font-medium px-2 py-1">
               Popular
             </Badge>
           )}
           {discount && (
-            <Badge className="bg-green-500 text-white text-xs font-medium px-2 py-1">
+            <Badge className="bg-[#F2E205] text-[#0D0D0D] text-xs font-medium px-2 py-1">
               -{discount}%
             </Badge>
           )}
@@ -117,7 +117,7 @@ export const RoomCard = ({
           >
             <Heart 
               className={`w-4 h-4 transition-colors ${
-                isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
+                isFavorite ? 'fill-[#F20C1F] text-[#F20C1F]' : 'text-[#020659]'
               }`} 
             />
           </button>
@@ -125,17 +125,17 @@ export const RoomCard = ({
             onClick={(e) => e.stopPropagation()}
             className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors duration-200 shadow-sm"
           >
-            <Share2 className="w-4 h-4 text-gray-600" />
+            <Share2 className="w-4 h-4 text-[#020659]" />
           </button>
         </div>
 
         {/* Rating Badge */}
         {rating && (
           <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/95 backdrop-blur-sm rounded-full px-2 py-1 shadow-sm">
-            <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-            <span className="text-sm font-medium text-gray-800">{rating}</span>
+            <Star className="w-3.5 h-3.5 fill-[#F2E205] text-[#F2E205]" />
+            <span className="text-sm font-medium text-[#0D0D0D]">{rating}</span>
             {reviewCount > 0 && (
-              <span className="text-xs text-gray-600">({reviewCount})</span>
+              <span className="text-xs text-[#020659]">({reviewCount})</span>
             )}
           </div>
         )}
@@ -143,29 +143,29 @@ export const RoomCard = ({
 
       <CardContent className="p-5">
         {/* Room Name */}
-        <h3 className="font-bold text-gray-900 text-xl mb-3 line-clamp-1 group-hover:text-orange-600 transition-colors">
+        <h3 className="font-bold text-[#0D0D0D] text-xl mb-3 line-clamp-1 group-hover:text-[#F20C0C] transition-colors">
           {name}
         </h3>
 
         {/* Pricing */}
         <div className="flex items-baseline justify-between mb-4">
           <div className="flex items-baseline gap-2">
-            <span className="text-orange-600 font-bold text-2xl">${price}</span>
+            <span className="text-[#F20C1F] font-bold text-2xl">${price}</span>
             {originalPrice && originalPrice > price && (
               <span className="text-gray-400 line-through text-lg">${originalPrice}</span>
             )}
-            <span className="text-gray-500 text-sm">/ noche</span>
+            <span className="text-[#020659] text-sm">/ noche</span>
           </div>
         </div>
 
         {/* Room Details */}
-        <div className="grid grid-cols-2 gap-3 text-sm text-gray-700 mb-4">
+        <div className="grid grid-cols-2 gap-3 text-sm text-[#020659] mb-4">
           <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-orange-500" />
+            <Users className="w-4 h-4 text-[#F20C0C]" />
             <span>{capacity} personas</span>
           </div>
           <div className="flex items-center gap-2">
-            <Bed className="w-4 h-4 text-orange-500" />
+            <Bed className="w-4 h-4 text-[#F20C0C]" />
             <span>Cama {bedType}</span>
           </div>
           <div className="flex items-center gap-2 col-span-2">
@@ -180,14 +180,14 @@ export const RoomCard = ({
             {amenities.slice(0, 4).map((amenity, index) => (
               <div 
                 key={index}
-                className="flex items-center gap-1.5 bg-gray-50 rounded-full px-3 py-1.5 text-xs text-gray-600"
+                className="flex items-center gap-1.5 bg-[#020659]/10 rounded-full px-3 py-1.5 text-xs text-[#020659]"
               >
                 {getAmenityIcon(amenity)}
                 <span>{amenity}</span>
               </div>
             ))}
             {amenities.length > 4 && (
-              <div className="flex items-center gap-1.5 bg-gray-50 rounded-full px-3 py-1.5 text-xs text-gray-600">
+              <div className="flex items-center gap-1.5 bg-[#020659]/10 rounded-full px-3 py-1.5 text-xs text-[#020659]">
                 <span>+{amenities.length - 4} más</span>
               </div>
             )}
@@ -199,21 +199,21 @@ export const RoomCard = ({
           <Button 
             variant="outline" 
             size="sm"
-            className="flex-1 border-orange-200 text-orange-600 hover:bg-orange-50 hover:border-orange-300 transition-colors group"
+            className="flex-1 border-[#020659] text-[#020659] hover:bg-[#020659]/10 hover:border-[#020659] transition-colors group"
           >
             <Eye className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
             Ver Detalles
           </Button>
           <Button 
             size="sm"
-            className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-300"
+            className="flex-1 bg-gradient-to-r from-[#F20C0C] to-[#F20C1F] hover:from-[#D10000] text-white border-0 shadow-md hover:shadow-lg transition-all duration-300"
           >
             Reservar Ahora
           </Button>
         </div>
 
         {/* Quick Info */}
-        <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+        <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-[#0D0D0D]">
           <span>Cancelación gratuita</span>
           <span>Sin prepago</span>
         </div>

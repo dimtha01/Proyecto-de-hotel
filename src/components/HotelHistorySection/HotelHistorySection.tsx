@@ -4,7 +4,7 @@ export const HotelHistorySection = () => {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="md:order-2">
           <img
-            src="/placeholder.svg?height=400&width=600"
+            src="/images/hotel.jpg"
             alt="Historia del Hotel"
             className="rounded-lg shadow-lg w-full h-auto object-cover"
           />

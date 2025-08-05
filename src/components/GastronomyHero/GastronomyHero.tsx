@@ -7,20 +7,20 @@ export const GastronomyHero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const backgroundImages = [
-    "/images/gastronomy-hero-1.jpg",
-    "/images/gastronomy-hero-2.jpg",
-    "/images/gastronomy-hero-3.jpg",
+    "/images/gastronomia banner.jpg",
+    "/images/gastronomia banner 2.jpg",
+    "/images/gastronomia banner 3.jpg",
   ];
 
   const stats = [
-    { icon: <Star className="w-5 h-5" />, value: "4.8", label: "Rating" },
+    { icon: <Star className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>, value: "4.8", label: "Rating" },
     {
-      icon: <Utensils className="w-5 h-5" />,
+      icon: <Utensils className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>,
       value: "200+",
       label: "Platillos",
     },
-    { icon: <Award className="w-5 h-5" />, value: "5", label: "Chefs" },
-    { icon: <Clock className="w-5 h-5" />, value: "24/7", label: "Servicio" },
+    { icon: <Award className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>, value: "5", label: "Chefs" },
+    { icon: <Clock className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>, value: "24/7", label: "Servicio" },
   ];
 
   useEffect(() => {
@@ -50,12 +50,12 @@ export const GastronomyHero = () => {
 
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F20C0C]/20 to-transparent" />
       </div>
 
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
-      <div className="absolute bottom-32 right-16 w-32 h-32 bg-red-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
+      <div className="absolute bottom-32 right-16 w-32 h-32 bg-[#F20C0C]/20 rounded-full blur-2xl animate-pulse delay-1000" />
       <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
 
       {/* Content Container */}
@@ -82,7 +82,7 @@ export const GastronomyHero = () => {
           }`}
         >
           <span className="block">Nuestra</span>
-          <span className="block bg-gradient-to-r from-red-400 via-red-300 to-orange-300 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-[#F20C0C] via-[#D10000] to-[#A00000] bg-clip-text text-transparent">
             Gastronomía
           </span>
           <span className="block text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mt-2">
@@ -97,9 +97,9 @@ export const GastronomyHero = () => {
           }`}
         >
           Un viaje culinario que{" "}
-          <span className="text-red-300 font-semibold">deleitará</span> todos tus
+          <span className="text-[#F20C1F] font-semibold">deleitará</span> todos tus
           sentidos con{" "}
-          <span className="text-red-300 font-semibold">sabores únicos</span>.
+          <span className="text-[#F20C1F] font-semibold">sabores únicos</span>.
           <br className="hidden md:block" />
           <span className="text-white/70 text-base md:text-lg block mt-2">
             Experiencias gastronómicas diseñadas por chefs expertos
@@ -117,12 +117,12 @@ export const GastronomyHero = () => {
               key={index}
               className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group"
             >
-              <div className="text-red-300 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-[#F20C1F] group-hover:scale-110 transition-transform duration-300">
                 {stat.icon}
               </div>
               <div className="text-left">
-                <div className="text-white font-bold text-lg">{stat.value}</div>
-                <div className="text-white/70 text-xs">{stat.label}</div>
+                <div className="text-white font-bold text-lg transition-colors duration-300">{stat.value}</div>
+                <div className="text-white/70 text-xs group-hover:text-white/90 transition-colors duration-300">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -134,7 +134,7 @@ export const GastronomyHero = () => {
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
-          <button className="group px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95">
+          <button className="group px-8 py-4 bg-gradient-to-r from-[#F20C0C] to-[#F20C1F] hover:from-[#D10000] hover:to-[#B20000] text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95">
             <span className="flex items-center gap-2">
               Ver Nuestro Menú
               <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
@@ -154,7 +154,7 @@ export const GastronomyHero = () => {
             onClick={() => setCurrentImageIndex(index)}
             className={`w-2 h-8 rounded-full transition-all duration-300 ${
               index === currentImageIndex
-                ? "bg-red-400 shadow-lg"
+                ? "bg-[#F20C1F] shadow-lg"
                 : "bg-white/30 hover:bg-white/50"
             }`}
           />

@@ -12,41 +12,41 @@ export const SearchForm = () => {
             <Search className="w-4 h-4 mr-2" />
           </div>
           <Input
-            placeholder="Stavanger, Norway"
+            placeholder="Stavanger, Noruega"
             className="bg-transparent border-white/20 text-white placeholder:text-white/60 focus:border-white/40"
           />
         </div>
 
-        {/* Check in */}
+        {/* Registrarse */}
         <div className="space-y-2">
           <div className="flex items-center text-white/80">
             <Calendar className="w-4 h-4 mr-2" />
-            <span className="text-sm">Check in</span>
+            <span className="text-sm">Registrarse</span>
           </div>
           <Input type="date" className="bg-transparent border-white/20 text-white focus:border-white/40" />
         </div>
 
-        {/* Checkout */}
+        {/* Verificar */}
         <div className="space-y-2">
           <div className="flex items-center text-white/80">
             <Calendar className="w-4 h-4 mr-2" />
-            <span className="text-sm">Checkout</span>
+            <span className="text-sm">Verificar</span>
           </div>
           <Input type="date" className="bg-transparent border-white/20 text-white focus:border-white/40" />
         </div>
 
-        {/* Guests & Search Button */}
+        {/* Invitados y botón de búsqueda */}
         <div className="space-y-2">
           <div className="flex items-center text-white/80">
             <Users className="w-4 h-4 mr-2" />
-            <span className="text-sm">Guests</span>
+            <span className="text-sm">Invitados</span>
           </div>
           <div className="flex gap-2">
             <Input
-              placeholder="2 guests"
+              placeholder="2 Invitados"
               className="bg-transparent border-white/20 text-white placeholder:text-white/60 focus:border-white/40"
             />
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8">Checkout</Button>
+            <Button className="bg-gradient-to-r from-[#F20C0C] to-[#8A0303] hover:from-[#D10000] hover:to-[#5A0000] text-white font-semibold rounded-sm px-8">Verificar</Button>
           </div>
         </div>
       </div>

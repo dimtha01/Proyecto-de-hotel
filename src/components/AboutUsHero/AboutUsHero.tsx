@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  ChevronDown,
-  Star,
-  Award,
-  Users,
-  Building,
-  Calendar,
-  Globe,
-  Trophy,
-} from "lucide-react";
+import { ChevronDown, Award, Users, Building, Calendar, Globe, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const AboutUsHero = () => {
@@ -16,30 +7,24 @@ export const AboutUsHero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const backgroundImages = [
-    "/images/aboutus-hero-1.jpg",
-    "/images/aboutus-hero-2.jpg",
-    "/images/aboutus-hero-3.jpg",
+    "/images/sobre nosotros banner.jpg",
+    "/images/sobre nosotros banner 2.jpg",
+    "/images/sobre nosotros banner 3.jpg",
   ];
 
   const stats = [
     { icon: <Calendar className="w-5 h-5" />, value: "15+", label: "Años" },
-    {
-      icon: <Trophy className="w-5 h-5" />,
-      value: "50+",
-      label: "Premios",
-    },
+    { icon: <Trophy className="w-5 h-5" />, value: "50+", label: "Premios" },
     { icon: <Users className="w-5 h-5" />, value: "200+", label: "Equipo" },
     { icon: <Globe className="w-5 h-5" />, value: "5", label: "Países" },
   ];
 
   useEffect(() => {
     setIsLoaded(true);
-
     // Auto-rotate background images every 8 seconds
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
     }, 8000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -56,29 +41,25 @@ export const AboutUsHero = () => {
             style={{ backgroundImage: `url('${image}')` }}
           />
         ))}
-
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-900/20 to-transparent" />
       </div>
 
       {/* Floating Elements with Enhanced Animations */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
-      <div className="absolute bottom-32 right-16 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
+      <div className="absolute bottom-32 right-16 w-32 h-32 bg-orange-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
       <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
 
-      {/* Animated About Icons */}
+      {/* Animated Icons */}
       <div className="absolute top-32 right-32 opacity-20">
         <div className="animate-bounce delay-200">
           <Building className="w-8 h-8 text-white/30" />
         </div>
       </div>
       <div className="absolute bottom-40 left-20 opacity-20">
-        <div
-          className="animate-bounce delay-700"
-          style={{ animationDirection: "reverse" }}
-        >
-          <Trophy className="w-6 h-6 text-emerald-300/40" />
+        <div className="animate-bounce delay-700" style={{ animationDirection: 'reverse' }}>
+          <Trophy className="w-6 h-6 text-orange-300/40" />
         </div>
       </div>
       <div className="absolute top-40 left-32 opacity-20">
@@ -87,25 +68,22 @@ export const AboutUsHero = () => {
         </div>
       </div>
       <div className="absolute bottom-28 right-40 opacity-20">
-        <div
-          className="animate-bounce delay-1500"
-          style={{ animationDirection: "reverse" }}
-        >
-          <Award className="w-6 h-6 text-teal-300/30" />
+        <div className="animate-bounce delay-1500" style={{ animationDirection: 'reverse' }}>
+          <Award className="w-6 h-6 text-[#F20C1F]/30" />
         </div>
       </div>
 
-      {/* Floating Heritage Particles */}
+      {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-2 h-2 bg-white/20 rounded-full animate-ping`}
+            className="absolute w-2 h-2 bg-white/20 rounded-full animate-ping"
             style={{
-              top: `${18 + i * 11}%`,
-              left: `${8 + i * 10}%`,
-              animationDelay: `${i * 700}ms`,
-              animationDuration: "3s",
+              top: `${20 + i * 15}%`,
+              left: `${10 + i * 12}%`,
+              animationDelay: `${i * 800}ms`,
+              animationDuration: '3s',
             }}
           />
         ))}
@@ -126,28 +104,17 @@ export const AboutUsHero = () => {
           </div>
         </div>
 
-        {/* Main Title with Enhanced Animations */}
+        {/* Main Title with Animations */}
         <h1
           className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transform transition-all duration-1000 delay-500 ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <span
-            className="block animate-fade-in-up"
-            style={{ animationDelay: "0.5s" }}
-          >
-            Sobre
-          </span>
-          <span
-            className="block bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 bg-clip-text text-transparent animate-fade-in-up animate-pulse"
-            style={{ animationDelay: "0.7s" }}
-          >
+          <span className="block animate-fade-in-up" style={{ animationDelay: '0.5s' }}>Sobre</span>
+          <span className="block bg-gradient-to-r from-[#F20C0C] via-[#D10000] to-[#A00000] bg-clip-text text-transparent">
             Nosotros
           </span>
-          <span
-            className="block text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mt-2 animate-fade-in-up"
-            style={{ animationDelay: "0.9s" }}
-          >
+          <span className="block text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mt-2 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
             Nuestra Historia
           </span>
         </h1>
@@ -159,9 +126,8 @@ export const AboutUsHero = () => {
           }`}
         >
           Conoce la{" "}
-          <span className="text-emerald-300 font-semibold">historia</span> y los{" "}
-          <span className="text-emerald-300 font-semibold">valores</span> que
-          nos hacen únicos.
+          <span className="text-[#F20C1F] font-semibold">historia</span> y los{" "}
+          <span className="text-[#F20C1F] font-semibold">valores</span> que nos hacen únicos.
           <br className="hidden md:block" />
           <span className="text-white/70 text-base md:text-lg block mt-2">
             Una tradición de excelencia construida con pasión y dedicación
@@ -180,11 +146,11 @@ export const AboutUsHero = () => {
               className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group hover:scale-110 hover:rotate-1 cursor-pointer"
               style={{ animationDelay: `${1000 + index * 200}ms` }}
             >
-              <div className="text-emerald-300 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+              <div className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
                 {stat.icon}
               </div>
               <div className="text-left">
-                <div className="text-white font-bold text-lg group-hover:text-emerald-200 transition-colors duration-300">
+                <div className="text-white font-bold text-lg transition-colors duration-300">
                   {stat.value}
                 </div>
                 <div className="text-white/70 text-xs group-hover:text-white/90 transition-colors duration-300">
@@ -201,7 +167,7 @@ export const AboutUsHero = () => {
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
-          <button className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1 animate-pulse hover:animate-none">
+          <button className="group px-8 py-4 bg-gradient-to-r from-[#F20C0C] to-[#8A0303] hover:from-[#D10000] hover:to-[#5A0000] text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1">
             <span className="flex items-center gap-2">
               Conocer Más
               <ChevronDown className="w-4 h-4 group-hover:translate-y-1 group-hover:rotate-180 transition-transform duration-300" />
@@ -220,16 +186,14 @@ export const AboutUsHero = () => {
             key={index}
             onClick={() => setCurrentImageIndex(index)}
             className={`w-2 h-8 rounded-full transition-all duration-300 hover:scale-110 hover:w-3 ${
-              index === currentImageIndex
-                ? "bg-emerald-400 shadow-lg animate-pulse"
-                : "bg-white/30 hover:bg-white/50"
+              index === currentImageIndex ? "bg-orange-400 shadow-lg animate-pulse" : "bg-white/30 hover:bg-white/50"
             }`}
           />
         ))}
       </div>
 
-      {/* Additional CSS animations */}
-      <style jsx>{`
+      {/* Reusable Animations */}
+      <style>{`
         @keyframes fade-in-up {
           from {
             opacity: 0;
@@ -240,23 +204,8 @@ export const AboutUsHero = () => {
             transform: translateY(0);
           }
         }
-
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
-        }
-
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
         }
       `}</style>
     </section>
