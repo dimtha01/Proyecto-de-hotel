@@ -44,7 +44,7 @@ export const RoomsHero = () => {
         {backgroundImages.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-2000 ease-in-out ${
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-2000 ${
               index === currentImageIndex ? "opacity-100" : "opacity-0"
             }`}
             style={{ backgroundImage: `url('${image}')` }}
@@ -54,13 +54,13 @@ export const RoomsHero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-orange-900/10 to-transparent sm:from-orange-900/20" />
       </div>
 
-      {/* Floating Elements - Responsive */}
-      <div className="absolute top-10 left-4 w-12 h-12 sm:top-20 sm:left-10 sm:w-20 sm:h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
-      <div className="absolute bottom-20 right-8 w-20 h-20 sm:bottom-32 sm:right-16 sm:w-32 sm:h-32 bg-orange-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
-      <div className="absolute top-1/4 right-8 w-10 h-10 sm:top-1/3 sm:right-20 sm:w-16 sm:h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
-
-      {/* Animated Icons - Responsive */}
-      <div className="absolute top-16 right-16 sm:top-32 sm:right-32 opacity-20">
+      {/* Floating Elements with Enhanced Animations */}
+      <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-32 right-16 w-32 h-32 bg-orange-500/20 rounded-full blur-2xl animate-pulse delay-1000" />
+      <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
+      
+      {/* Animated Room Icons */}
+      <div className="absolute top-32 right-32 opacity-20">
         <div className="animate-bounce delay-200">
           <Bed className="w-6 h-6 sm:w-8 sm:h-8 text-white/30" />
         </div>
@@ -73,8 +73,8 @@ export const RoomsHero = () => {
           <Star className="w-4 h-4 sm:w-6 sm:h-6 text-orange-300/40" />
         </div>
       </div>
-
-      {/* Particles - Responsive */}
+      
+      {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (
           <div
@@ -93,11 +93,10 @@ export const RoomsHero = () => {
       {/* Content - Posicionado más abajo para dar espacio al header */}
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full mt-20 sm:mt-24 lg:mt-32">
         {/* Breadcrumb */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mb-6 sm:mb-8"
+        <div
+          className={`mb-6 transform transition-all duration-1000 delay-300 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
         >
           <div className="inline-flex items-center px-4 py-2 sm:px-7 bg-white/10 backdrop-blur-md rounded-full text-white/80 text-xs sm:text-sm hover:bg-white/20 transition-all duration-300">
             <Link to="/" className="hover:text-white transition-colors">
@@ -110,15 +109,14 @@ export const RoomsHero = () => {
           </div>
         </motion.div>
 
-        {/* Título Principal */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-3xl xs:text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+        {/* Main Title with Enhanced Animations */}
+        <h1
+          className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transform transition-all duration-1000 delay-500 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
         >
-          <span className="block">Nuestras</span>
-          <span className="block bg-gradient-to-r from-[#F20C0C] via-[#D10000] to-[#A00000] bg-clip-text text-transparent">
+          <span className="block animate-fade-in-up" style={{ animationDelay: '0.5s' }}>Nuestras</span>
+          <span className="block bg-gradient-to-r from-orange-400 via-orange-300 to-yellow-300 bg-clip-text text-transparent animate-fade-in-up animate-pulse" style={{ animationDelay: '0.7s' }}>
             Habitaciones
           </span>
           <span className="block text-2xl xs:text-3xl sm:text-3xl md:text-2xl lg:text-5xl xl:text-6xl font-light text-white/90 mt-1 sm:mt-2">
@@ -126,12 +124,11 @@ export const RoomsHero = () => {
           </span>
         </motion.h1>
 
-        {/* Descripción */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2"
+        {/* Subtitle */}
+        <p
+          className={`text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed transform transition-all duration-1000 delay-700 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
         >
           Descubre el{" "}
           <span className="text-[#F20C1F] font-semibold">confort</span> y la{" "}
@@ -143,34 +140,44 @@ export const RoomsHero = () => {
           </span>
         </motion.p>
 
-        {/* Estadísticas */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 mb-6 sm:mb-10 px-2"
+        {/* Stats with Hover Animations */}
+        <div
+          className={`flex flex-wrap justify-center gap-6 md:gap-8 mb-10 transform transition-all duration-1000 delay-900 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
         >
           {stats.map((stat, index) => (
             <div
               key={index}
               className="flex items-center gap-2 px-3 py-2 sm:px-4 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group hover:scale-105 sm:hover:scale-110 hover:rotate-1 cursor-pointer min-w-[90px] sm:min-w-[110px]"
             >
-              <div className="group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 flex-shrink-0">
+              <div className="text-orange-300 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
                 {stat.icon}
               </div>
               <div className="text-left">
-                <div className="text-white font-bold text-sm sm:text-lg">
-                  {stat.value}
-                </div>
-                <div className="text-white/70 text-xs group-hover:text-white/90 whitespace-nowrap">
-                  {stat.label}
-                </div>
+                <div className="text-white font-bold text-lg group-hover:text-orange-200 transition-colors duration-300">{stat.value}</div>
+                <div className="text-white/70 text-xs group-hover:text-white/90 transition-colors duration-300">{stat.label}</div>
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
-       
+        {/* CTA Buttons with Enhanced Animations */}
+        <div
+          className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-1100 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          <button className="group px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1 animate-pulse hover:animate-none">
+            <span className="flex items-center gap-2">
+              Explorar Habitaciones
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-1 group-hover:rotate-180 transition-transform duration-300" />
+            </span>
+          </button>
+          <button className="px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105 active:scale-95 hover:rotate-1 hover:-translate-y-1">
+            Ver Ofertas Especiales
+          </button>
+        </div>
       </div>
 
       {/* Image Indicators - Responsive */}
@@ -179,7 +186,7 @@ export const RoomsHero = () => {
           <button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
-            className={`w-1.5 h-6 sm:w-2 sm:h-8 rounded-full transition-all duration-300 hover:scale-110 hover:w-2 sm:hover:w-3 ${
+            className={`w-2 h-8 rounded-full transition-all duration-300 hover:scale-110 hover:w-3 ${
               index === currentImageIndex
                 ? "bg-orange-400 shadow-lg animate-pulse"
                 : "bg-white/30 hover:bg-white/50"
@@ -187,13 +194,8 @@ export const RoomsHero = () => {
           />
         ))}
       </div>
+      
 
-      {/* Scroll Indicator - Solo en pantallas grandes */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block">
-        <div className="animate-bounce">
-          <ChevronDown className="w-6 h-6 text-white/50" />
-        </div>
-      </div>
     </section>
   );
 };

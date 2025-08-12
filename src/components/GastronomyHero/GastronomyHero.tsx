@@ -13,6 +13,7 @@ export const GastronomyHero = () => {
   ];
 
   const stats = [
+<<<<<<< HEAD
     {
       icon: (
         <Star className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300" />
@@ -41,6 +42,16 @@ export const GastronomyHero = () => {
       value: "24/7",
       label: "Servicio",
     },
+=======
+    { icon: <Star className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>, value: "4.8", label: "Rating" },
+    {
+      icon: <Utensils className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>,
+      value: "200+",
+      label: "Platillos",
+    },
+    { icon: <Award className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>, value: "5", label: "Chefs" },
+    { icon: <Clock className="text-[#000] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"/>, value: "24/7", label: "Servicio" },
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
   ];
 
   useEffect(() => {
@@ -69,6 +80,7 @@ export const GastronomyHero = () => {
         ))}
 
         {/* Gradient Overlays */}
+<<<<<<< HEAD
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60 sm:from-black/30 sm:via-black/50 sm:to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#F20C0C]/10 to-transparent sm:from-[#F20C0C]/20" />
       </div>
@@ -77,6 +89,16 @@ export const GastronomyHero = () => {
       <div className="absolute top-10 left-4 w-12 h-12 sm:top-20 sm:left-10 sm:w-20 sm:h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
       <div className="absolute bottom-20 right-8 w-20 h-20 sm:bottom-32 sm:right-16 sm:w-32 sm:h-32 bg-[#F20C0C]/20 rounded-full blur-2xl animate-pulse delay-1000" />
       <div className="absolute top-1/4 right-8 w-10 h-10 sm:top-1/3 sm:right-20 sm:w-16 sm:h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
+=======
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F20C0C]/20 to-transparent" />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-32 right-16 w-32 h-32 bg-[#F20C0C]/20 rounded-full blur-2xl animate-pulse delay-1000" />
+      <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/5 rounded-full blur-lg animate-pulse delay-500" />
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
 
       {/* Content Container - Positioned in center */}
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full mt-20 sm:mt-24 lg:mt-32">
@@ -117,11 +139,19 @@ export const GastronomyHero = () => {
           }`}
         >
           Un viaje culinario que{" "}
+<<<<<<< HEAD
           <span className="text-[#F20C1F] font-semibold">deleitará</span> todos
           tus sentidos con{" "}
           <span className="text-[#F20C1F] font-semibold">sabores únicos</span>.
           <br className="hidden sm:block" />
           <span className="text-white/70 text-sm sm:text-base md:text-lg block mt-1 sm:mt-2">
+=======
+          <span className="text-[#F20C1F] font-semibold">deleitará</span> todos tus
+          sentidos con{" "}
+          <span className="text-[#F20C1F] font-semibold">sabores únicos</span>.
+          <br className="hidden md:block" />
+          <span className="text-white/70 text-base md:text-lg block mt-2">
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
             Experiencias gastronómicas diseñadas por chefs expertos
           </span>
         </p>
@@ -137,6 +167,7 @@ export const GastronomyHero = () => {
               key={index}
               className="flex items-center gap-2 px-3 py-2 sm:px-4 bg-white/10 backdrop-blur-md rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group hover:scale-105 sm:hover:scale-110 hover:rotate-1 cursor-pointer min-w-[90px] sm:min-w-[110px]"
             >
+<<<<<<< HEAD
               <div className="text-[#F20C1F] group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                 {stat.icon}
               </div>
@@ -147,12 +178,39 @@ export const GastronomyHero = () => {
                 <div className="text-white/70 text-xs group-hover:text-white/90 transition-colors duration-300 whitespace-nowrap">
                   {stat.label}
                 </div>
+=======
+              <div className="text-[#F20C1F] group-hover:scale-110 transition-transform duration-300">
+                {stat.icon}
+              </div>
+              <div className="text-left">
+                <div className="text-white font-bold text-lg transition-colors duration-300">{stat.value}</div>
+                <div className="text-white/70 text-xs group-hover:text-white/90 transition-colors duration-300">{stat.label}</div>
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
               </div>
             </div>
           ))}
         </div>
 
+<<<<<<< HEAD
         {/* CTA Buttons - Improved responsive layout */}
+=======
+        {/* CTA Buttons */}
+        <div
+          className={`flex flex-col sm:flex-row gap-4 justify-center items-center transform transition-all duration-1000 delay-1100 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          <button className="group px-8 py-4 bg-gradient-to-r from-[#F20C0C] to-[#F20C1F] hover:from-[#D10000] hover:to-[#B20000] text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95">
+            <span className="flex items-center gap-2">
+              Ver Nuestro Menú
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
+            </span>
+          </button>
+          <button className="px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-105 active:scale-95">
+            Reservar Mesa
+          </button>
+        </div>
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
       </div>
 
       {/* Image Indicators - Responsive positioning */}
@@ -163,7 +221,11 @@ export const GastronomyHero = () => {
             onClick={() => setCurrentImageIndex(index)}
             className={`w-1.5 h-6 sm:w-2 sm:h-8 rounded-full transition-all duration-300 hover:scale-110 hover:w-2 sm:hover:w-3 ${
               index === currentImageIndex
+<<<<<<< HEAD
                 ? "bg-[#F20C1F] shadow-lg animate-pulse"
+=======
+                ? "bg-[#F20C1F] shadow-lg"
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
                 : "bg-white/30 hover:bg-white/50"
             }`}
           />

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+import { useState, useEffect } from "react";
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
 import { ArrowDown, Star, Users, Gift } from "lucide-react";
 export const RegisterHero = () => {
   const [isLoaded, setIsLoaded] = useState(false);

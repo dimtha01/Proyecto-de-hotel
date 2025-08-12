@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, Star, Award, Users, Building, Calendar, Globe, Trophy } from "lucide-react";
+import {
+  ChevronDown,
+  Star,
+  Award,
+  Users,
+  Building,
+  Calendar,
+  Globe,
+  Trophy,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const AboutUsHero = () => {
@@ -7,9 +16,9 @@ export const AboutUsHero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const backgroundImages = [
-    "/public/images/sobre nosotros banner.jpg",
-    "/public/images/sobre nosotros banner 2.jpg",
-    "/public/images/sobre nosotros banner 3.jpg",
+    "/images/aboutus-hero-1.jpg",
+    "/images/aboutus-hero-2.jpg",
+    "/images/aboutus-hero-3.jpg",
   ];
 
   const stats = [
@@ -192,7 +201,7 @@ export const AboutUsHero = () => {
         ))}
       </div>
 
-      {/* Reusable Animations */}
+      {/* Additional CSS animations */}
       <style jsx>{`
         @keyframes fade-in-up {
           from {

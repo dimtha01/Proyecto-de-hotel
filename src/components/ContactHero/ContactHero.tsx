@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, Star, Award, Users, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { ChevronDown, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const ContactHero = () => {
@@ -7,9 +7,15 @@ export const ContactHero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const backgroundImages = [
+<<<<<<< HEAD
     "/public/images/contantanos banner.jpg",
     "/public/images/contantanos banner 2.jpg",
     "/public/images/contantanos banner 3.jpg",
+=======
+    "/images/contantanos banner.jpg",
+    "/images/contantanos banner 2.jpg",
+    "/images/contantanos banner 3.jpg",
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
   ];
 
   const stats = [
@@ -58,7 +64,14 @@ export const ContactHero = () => {
         </div>
       </div>
       <div className="absolute bottom-40 left-20 opacity-20">
+<<<<<<< HEAD
         <div className="animate-bounce delay-700" style={{ animationDirection: 'reverse' }}>
+=======
+        <div
+          className="animate-bounce delay-700"
+          style={{ animationDirection: "reverse" }}
+        >
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
           <Mail className="w-6 h-6 text-orange-300/40" />
         </div>
       </div>
@@ -68,7 +81,14 @@ export const ContactHero = () => {
         </div>
       </div>
       <div className="absolute bottom-28 right-40 opacity-20">
+<<<<<<< HEAD
         <div className="animate-bounce delay-1500" style={{ animationDirection: 'reverse' }}>
+=======
+        <div
+          className="animate-bounce delay-1500"
+          style={{ animationDirection: "reverse" }}
+        >
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
           <Clock className="w-6 h-6 text-[#F20C1F]/30" />
         </div>
       </div>
@@ -83,7 +103,11 @@ export const ContactHero = () => {
               top: `${20 + i * 15}%`,
               left: `${10 + i * 12}%`,
               animationDelay: `${i * 800}ms`,
+<<<<<<< HEAD
               animationDuration: '3s',
+=======
+              animationDuration: "3s",
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
             }}
           />
         ))}
@@ -110,11 +134,23 @@ export const ContactHero = () => {
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
+<<<<<<< HEAD
           <span className="block animate-fade-in-up" style={{ animationDelay: '0.5s' }}>Contáctanos</span>
+=======
+          <span
+            className="block animate-fade-in-up"
+            style={{ animationDelay: "0.5s" }}
+          >
+            Contáctanos
+          </span>
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
           <span className="block bg-gradient-to-r from-[#F20C0C] via-[#D10000] to-[#A00000] bg-clip-text text-transparent">
             Hoy Mismo
           </span>
-          <span className="block text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mt-2 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
+          <span
+            className="block text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mt-2 animate-fade-in-up"
+            style={{ animationDelay: "0.9s" }}
+          >
             Estamos Aquí
           </span>
         </h1>
@@ -126,9 +162,16 @@ export const ContactHero = () => {
           }`}
         >
           Estamos aquí para{" "}
+<<<<<<< HEAD
           <span className="text-[#F20C1F] font-semibold">ayudarte</span>. Envíanos un{" "}
           <span className="text-[#F20C1F] font-semibold">mensaje</span>{" "}
           o encuéntranos.
+=======
+          <span className="text-[#F20C1F] font-semibold">ayudarte</span>.
+          Envíanos un{" "}
+          <span className="text-[#F20C1F] font-semibold">mensaje</span> o
+          encuéntranos.
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
           <br className="hidden md:block" />
           <span className="text-white/70 text-base md:text-lg block mt-2">
             Tu satisfacción es nuestra prioridad, comunícate con nosotros
@@ -187,14 +230,24 @@ export const ContactHero = () => {
             key={index}
             onClick={() => setCurrentImageIndex(index)}
             className={`w-2 h-8 rounded-full transition-all duration-300 hover:scale-110 hover:w-3 ${
+<<<<<<< HEAD
               index === currentImageIndex ? "bg-orange-400 shadow-lg animate-pulse" : "bg-white/30 hover:bg-white/50"
+=======
+              index === currentImageIndex
+                ? "bg-orange-400 shadow-lg animate-pulse"
+                : "bg-white/30 hover:bg-white/50"
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
             }`}
           />
         ))}
       </div>
 
       {/* Reusable Animations */}
+<<<<<<< HEAD
       <style jsx>{`
+=======
+      <style>{`
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
         @keyframes fade-in-up {
           from {
             opacity: 0;

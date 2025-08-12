@@ -1,6 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+<<<<<<< HEAD
 import { CalendarDays, Leaf, Wine, Clock, Users, Utensils } from "lucide-react";
+=======
+import { CalendarDays, Leaf, Clock, Users } from "lucide-react";
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
 
 type DiningExperience = {
   id: string;
@@ -73,24 +77,35 @@ export const CulinaryExperiencesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {diningExperiences.map((experience) => (
+<<<<<<< HEAD
             <Card 
               key={experience.id} 
               className="h-full overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
             >
+=======
+            <Card key={experience.id} className="overflow-hidden shadow-sm hover:shadow-md transition-all">
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
               <img
                 src={experience.image}
                 alt={experience.name}
                 className="w-full h-48 object-cover"
               />
               
+<<<<<<< HEAD
               <CardContent className="p-6 flex flex-col flex-grow">
+=======
+              <CardContent className="p-6">
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-bold text-gray-900">{experience.name}</h3>
                   <span className="text-xl font-bold text-red-600">${experience.price}</span>
                 </div>
 
+<<<<<<< HEAD
                 <p className="text-gray-600 mb-4">{experience.description}</p>
 
+=======
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center text-gray-700">
                     <Clock className="w-5 h-5 mr-2 text-gray-500" />
@@ -110,12 +125,15 @@ export const CulinaryExperiencesSection = () => {
                       <span>Opción vegetariana</span>
                     </div>
                   )}
+<<<<<<< HEAD
                   {experience.isAlcoholIncluded && (
                     <div className="flex items-center text-gray-700">
                       <Wine className="w-5 h-5 mr-2 text-purple-500" />
                       <span>Alcohol incluido</span>
                     </div>
                   )}
+=======
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
                 </div>
 
                 <div className="border-t border-gray-200 pt-4 mb-4">
@@ -129,6 +147,7 @@ export const CulinaryExperiencesSection = () => {
                   </ul>
                 </div>
 
+<<<<<<< HEAD
                 {/* Contenedor que empuja los botones hacia abajo */}
                 <div className="mt-auto">
                   <div className="flex space-x-3">
@@ -144,6 +163,20 @@ export const CulinaryExperiencesSection = () => {
                     <span>Cancelación gratuita</span>
                     <span>Sin prepago</span>
                   </div>
+=======
+                <div className="flex space-x-3 mt-6">
+                  <Button variant="outline" className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-100">
+                    Ver Detalles
+                  </Button>
+                  <Button className="flex-1 bg-red-600 hover:bg-red-700">
+                    Reservar Ahora
+                  </Button>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500 flex justify-between">
+                  <span>Cancelación gratuita</span>
+                  <span>Sin prepago</span>
+>>>>>>> 75414dd8da7ff1ef94d0d6d5efd2a331e882fa10
                 </div>
               </CardContent>
             </Card>
