@@ -11,6 +11,9 @@ import { MainLayout } from "@/layouts/MainLayout";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { LoginPage } from "@/pages/LoginPage";
 import { RegisterPage } from "@/pages/RegisterPage";
+import {Confirmation} from "@/pages/confirmationPage"
+import Reservation from "@/pages/Reservation";
+import RoomDetailsPage from "@/pages/RoomDetailsPage";
 
 // Configuración de rutas
 export const router = createBrowserRouter([
@@ -55,6 +58,18 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />,
+      },
+      {
+        path: "confirmation",
+        element: <Confirmation />,
+      },
+      {
+        path: "reservation",
+        element: <Reservation />,
+      },
+      {
+        path: "roomDetails/:roomId",
+        element: <RoomDetailsPage />,
       },
     ],
   },

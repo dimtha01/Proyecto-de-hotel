@@ -58,22 +58,22 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
     {
       value: "Ocean",
       label: "Océano",
-      icon: <Waves className="w-4 h-4 text-blue-500" />,
+      icon: <Waves className="w-4 h-4 text-[#020659]" />,
     },
     {
       value: "City",
       label: "Ciudad",
-      icon: <Building className="w-4 h-4 text-gray-600" />,
+      icon: <Building className="w-4 h-4 text-[#020659]" />,
     },
     {
       value: "Garden",
       label: "Jardín",
-      icon: <Leaf className="w-4 h-4 text-green-500" />,
+      icon: <Leaf className="w-4 h-4 text-[#020659]" />,
     },
     {
       value: "Mountain",
       label: "Montaña",
-      icon: <Mountain className="w-4 h-4 text-amber-600" />,
+      icon: <Mountain className="w-4 h-4 text-[#020659]" />,
     },
   ];
 
@@ -146,7 +146,6 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
     }
   };
 
-  // Auto-apply filters when they change
   useEffect(() => {
     const timer = setTimeout(() => {
       handleApplyFilters();
@@ -155,19 +154,19 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
   }, [capacity, bedType, view, minPrice, maxPrice, selectedAmenities]);
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-gray-100 mb-8 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-lg border border-[#020659]/10 mb-8 overflow-hidden">
       {/* Header with Filter Toggle */}
-      <div className="bg-gradient-to-r from-orange-50 to-orange-100 px-6 py-4 border-b border-orange-200">
+      <div className="bg-gradient-to-r from-[#F20C0C]/10 to-[#F20C1F]/10 px-6 py-4 border-b border-[#F20C0C]/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white rounded-lg shadow-sm">
-              <Filter className="w-5 h-5 text-orange-600" />
+              <Filter className="w-5 h-5 text-[#F20C1F]" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">
+              <h3 className="font-semibold text-[#0D0D0D]">
                 Filtros de Búsqueda
               </h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-[#020659]">
                 Encuentra tu habitación perfecta
               </p>
             </div>
@@ -176,7 +175,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
             {getActiveFiltersCount() > 0 && (
               <Badge
                 variant="secondary"
-                className="bg-orange-100 text-orange-700"
+                className="bg-[#F20C1F]/10 text-[#F20C1F]"
               >
                 {getActiveFiltersCount()} filtro
                 {getActiveFiltersCount() > 1 ? "s" : ""} activo
@@ -187,7 +186,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
               variant="ghost"
               size="sm"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="text-orange-600 hover:bg-orange-50"
+              className="text-[#F20C1F] hover:bg-[#F20C1F]/10"
             >
               {isExpanded ? "Menos filtros" : "Más filtros"}
             </Button>
@@ -197,14 +196,14 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
 
       {/* Active Filters Tags */}
       {getActiveFiltersCount() > 0 && (
-        <div className="px-6 py-3 bg-gray-50 border-b border-gray-100">
+        <div className="px-6 py-3 bg-[#020659]/5 border-b border-[#020659]/10">
           <div className="flex flex-wrap gap-2">
             {capacity && (
               <Badge
                 variant="outline"
                 className="flex items-center gap-1 bg-white"
               >
-                <Users className="w-3 h-3" />
+                <Users className="w-3 h-3 text-[#F20C0C]" />
                 {capacity} personas
                 <button
                   onClick={() => removeFilter("capacity")}
@@ -219,7 +218,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                 variant="outline"
                 className="flex items-center gap-1 bg-white"
               >
-                <Bed className="w-3 h-3" />
+                <Bed className="w-3 h-3 text-[#F20C0C]" />
                 Cama {bedType}
                 <button
                   onClick={() => removeFilter("bedType")}
@@ -234,7 +233,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                 variant="outline"
                 className="flex items-center gap-1 bg-white"
               >
-                <Eye className="w-3 h-3" />
+                <Eye className="w-3 h-3 text-[#F20C0C]" />
                 Vista {viewOptions.find((v) => v.value === view)?.label}
                 <button
                   onClick={() => removeFilter("view")}
@@ -249,7 +248,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                 variant="outline"
                 className="flex items-center gap-1 bg-white"
               >
-                <DollarSign className="w-3 h-3" />${minPrice || 0} - $
+                <DollarSign className="w-3 h-3 text-[#F20C0C]" />${minPrice || 0} - $
                 {maxPrice || "∞"}
                 <button
                   onClick={() => removeFilter("price")}
@@ -286,9 +285,9 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
           <div className="space-y-2">
             <label
               htmlFor="capacity"
-              className="flex items-center gap-2 text-sm font-medium text-gray-700"
+              className="flex items-center gap-2 text-sm font-medium text-[#0D0D0D]"
             >
-              <Users className="w-4 h-4 text-orange-500" />
+              <Users className="w-4 h-4 text-[#F20C0C]" />
               Capacidad
             </label>
             <Input
@@ -303,7 +302,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                   e.target.value ? Number.parseInt(e.target.value) : undefined
                 )
               }
-              className="w-full focus:ring-orange-500 focus:border-orange-500"
+              className="w-full focus:ring-[#F20C0C] focus:border-[#F20C0C]"
             />
           </div>
 
@@ -311,34 +310,34 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
           <div className="space-y-2">
             <label
               htmlFor="bedType"
-              className="flex items-center gap-2 text-sm font-medium text-gray-700"
+              className="flex items-center gap-2 text-sm font-medium text-[#0D0D0D]"
             >
-              <Bed className="w-4 h-4 text-orange-500" />
+              <Bed className="w-4 h-4 text-[#F20C0C]" />
               Tipo de Cama
             </label>
             <Select onValueChange={setBedType} value={bedType}>
               <SelectTrigger
                 id="bedType"
-                className="w-full focus:ring-orange-500 focus:border-orange-500"
+                className="w-full focus:ring-[#F20C0C] focus:border-[#F20C0C]"
               >
                 <SelectValue placeholder="Seleccionar tipo" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="King">
                   <div className="flex items-center gap-2">
-                    <Bed className="w-4 h-4" />
+                    <Bed className="w-4 h-4 text-[#020659]" />
                     King
                   </div>
                 </SelectItem>
                 <SelectItem value="Queen">
                   <div className="flex items-center gap-2">
-                    <Bed className="w-4 h-4" />
+                    <Bed className="w-4 h-4 text-[#020659]" />
                     Queen
                   </div>
                 </SelectItem>
                 <SelectItem value="Twin">
                   <div className="flex items-center gap-2">
-                    <Bed className="w-4 h-4" />
+                    <Bed className="w-4 h-4 text-[#020659]" />
                     Twin
                   </div>
                 </SelectItem>
@@ -350,15 +349,15 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
           <div className="space-y-2">
             <label
               htmlFor="view"
-              className="flex items-center gap-2 text-sm font-medium text-gray-700"
+              className="flex items-center gap-2 text-sm font-medium text-[#0D0D0D]"
             >
-              <Eye className="w-4 h-4 text-orange-500" />
+              <Eye className="w-4 h-4 text-[#F20C0C]" />
               Vista
             </label>
             <Select onValueChange={setView} value={view}>
               <SelectTrigger
                 id="view"
-                className="w-full focus:ring-orange-500 focus:border-orange-500"
+                className="w-full focus:ring-[#F20C0C] focus:border-[#F20C0C]"
               >
                 <SelectValue placeholder="Seleccionar vista" />
               </SelectTrigger>
@@ -377,8 +376,8 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
 
           {/* Price Range */}
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-              <DollarSign className="w-4 h-4 text-orange-500" />
+            <label className="flex items-center gap-2 text-sm font-medium text-[#0D0D0D]">
+              <DollarSign className="w-4 h-4 text-[#F20C0C]" />
               Rango de Precio
             </label>
             <div className="flex gap-2">
@@ -391,7 +390,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                     e.target.value ? Number.parseInt(e.target.value) : undefined
                   )
                 }
-                className="w-full focus:ring-orange-500 focus:border-orange-500"
+                className="w-full focus:ring-[#F20C0C] focus:border-[#F20C0C]"
               />
               <Input
                 type="number"
@@ -402,7 +401,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                     e.target.value ? Number.parseInt(e.target.value) : undefined
                   )
                 }
-                className="w-full focus:ring-orange-500 focus:border-orange-500"
+                className="w-full focus:ring-[#F20C0C] focus:border-[#F20C0C]"
               />
             </div>
           </div>
@@ -410,9 +409,9 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
 
         {/* Expanded Filters */}
         {isExpanded && (
-          <div className="border-t border-gray-100 pt-4 mt-4">
+          <div className="border-t border-[#020659]/10 pt-4 mt-4">
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+              <label className="flex items-center gap-2 text-sm font-medium text-[#0D0D0D]">
                 <span>🏨</span>
                 Amenidades
               </label>
@@ -423,8 +422,8 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
                     onClick={() => toggleAmenity(amenity.id)}
                     className={`flex items-center gap-2 p-3 rounded-lg border transition-all duration-200 text-sm ${
                       selectedAmenities.includes(amenity.id)
-                        ? "bg-orange-50 border-orange-200 text-orange-700"
-                        : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
+                        ? "bg-[#F20C1F]/10 border-[#F20C1F]/20 text-[#F20C1F]"
+                        : "bg-white border-[#020659]/20 text-[#020659] hover:bg-[#020659]/5"
                     }`}
                   >
                     <span className="text-lg">{amenity.icon}</span>
@@ -437,10 +436,10 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
         )}
 
         {/* Action Buttons */}
-        <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100">
+        <div className="flex gap-3 mt-6 pt-4 border-t border-[#020659]/10">
           <Button
             onClick={handleApplyFilters}
-            className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md hover:shadow-lg transition-all duration-300"
+            className="flex-1 bg-gradient-to-r from-[#F20C0C] to-[#F20C1F] hover:from-[#D10000] hover:to-[#B20000] text-white shadow-md hover:shadow-lg transition-all duration-300"
           >
             <Search className="w-4 h-4 mr-2" />
             Buscar Habitaciones
@@ -448,7 +447,7 @@ export const RoomFilters = ({ onFilterChange }: RoomFiltersProps) => {
           <Button
             onClick={handleResetFilters}
             variant="outline"
-            className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+            className="flex-1 border-[#020659]/30 text-[#020659] hover:bg-[#020659]/5 transition-colors"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
             Limpiar Filtros

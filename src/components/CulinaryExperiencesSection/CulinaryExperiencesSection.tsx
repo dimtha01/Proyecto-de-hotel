@@ -1,77 +1,150 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, Leaf, Wine, Clock, Users, Utensils } from "lucide-react";
 
-const experiencesData = [
+type DiningExperience = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  duration: string;
+  time: string;
+  type: string;
+  isVegetarianFriendly: boolean;
+  isAlcoholIncluded: boolean;
+  features: string[];
+};
+
+const diningExperiences: DiningExperience[] = [
   {
-    id: "e1",
-    name: "Cena Temática: Noche Mediterránea",
-    description:
-      "Un festín de sabores frescos y aromas del Mediterráneo, con música en vivo.",
-    image: "/placeholder.svg?height=200&width=300",
-    date: "Cada viernes",
+    id: "d1",
+    name: "Cena Gourmet Mediterránea",
+    description: "Menú degustación con influencias griegas, italianas y españolas",
     price: 75,
+    image: "/public/images/comida mediterrania.jpg",
+    duration: "3 horas",
+    time: "20:00 - 23:00",
+    type: "Cena",
+    isVegetarianFriendly: true,
+    isAlcoholIncluded: true,
+    features: ["5 platos gourmet", "Maridaje de vinos", "Música en vivo"]
   },
   {
-    id: "e2",
-    name: "Clase de Cocina con el Chef",
-    description:
-      "Aprende a preparar nuestros platos estrella con nuestro chef ejecutivo.",
-    image: "/placeholder.svg?height=200&width=300",
-    date: "Sábados por la mañana",
-    price: 50,
+    id: "d3",
+    name: "Degustación de Vinos Premium",
+    description: "Selección de los mejores vinos de la región",
+    price: 60,
+    image: "/public/images/degustacion de vinos premium.jpg",
+    duration: "2 horas",
+    time: "18:00 - 20:00",
+    type: "Degustación",
+    isVegetarianFriendly: false,
+    isAlcoholIncluded: true,
+    features: ["6 vinos premium", "Tabla de quesos", "Guía sommelier"]
   },
   {
-    id: "e3",
-    name: "Degustación de Vinos y Quesos",
-    description:
-      "Explora los maridajes perfectos con nuestra selección de vinos y quesos locales.",
-    image: "/placeholder.svg?height=200&width=300",
-    date: "Jueves por la tarde",
-    price: 40,
-  },
+    id: "d4",
+    name: "Clase de Cocina con Chef",
+    description: "Aprende los secretos de nuestra cocina estrella",
+    price: 90,
+    image: "/public/images/clases de cocina.jpg",
+    duration: "3.5 horas",
+    time: "10:00 - 13:30",
+    type: "Taller",
+    isVegetarianFriendly: false,
+    isAlcoholIncluded: false,
+    features: ["Ingredientes premium", "Recetario exclusivo", "Degustación final"]
+  }
 ];
 
 export const CulinaryExperiencesSection = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Experiencias Culinarias
+            Experiencias Gastronómicas
           </h2>
           <p className="text-lg text-gray-600">
-            Sumérgete en eventos gastronómicos únicos durante tu estancia.
+            Descubre sabores excepcionales durante tu estancia
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {experiencesData.map((experience) => (
-            <Card key={experience.id} className="flex flex-col justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {diningExperiences.map((experience) => (
+            <Card 
+              key={experience.id} 
+              className="h-full overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
+            >
               <img
-                src={experience.image || "/placeholder.svg"}
+                src={experience.image}
                 alt={experience.name}
-                className="w-full h-48 object-cover rounded-t-lg"
+                className="w-full h-48 object-cover"
               />
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-gray-800 text-xl mb-2">
-                  {experience.name}
-                </h3>
-                <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                  {experience.description}
-                </p>
-                <div className="flex items-center justify-between text-gray-700 text-sm mb-4">
-                  <span className="flex items-center gap-1">
-                    <CalendarDays className="w-4 h-4" />
-                    {experience.date}
-                  </span>
-                  <span className="font-bold text-orange-600">
-                    ${experience.price}
-                  </span>
+              
+              <CardContent className="p-6 flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-bold text-gray-900">{experience.name}</h3>
+                  <span className="text-xl font-bold text-red-600">${experience.price}</span>
                 </div>
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-                  Más Información
-                </Button>
+
+                <p className="text-gray-600 mb-4">{experience.description}</p>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-gray-700">
+                    <Clock className="w-5 h-5 mr-2 text-gray-500" />
+                    <span>{experience.duration}</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <Users className="w-5 h-5 mr-2 text-gray-500" />
+                    <span>{experience.type}</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <CalendarDays className="w-5 h-5 mr-2 text-gray-500" />
+                    <span>{experience.time}</span>
+                  </div>
+                  {experience.isVegetarianFriendly && (
+                    <div className="flex items-center text-gray-700">
+                      <Leaf className="w-5 h-5 mr-2 text-green-500" />
+                      <span>Opción vegetariana</span>
+                    </div>
+                  )}
+                  {experience.isAlcoholIncluded && (
+                    <div className="flex items-center text-gray-700">
+                      <Wine className="w-5 h-5 mr-2 text-purple-500" />
+                      <span>Alcohol incluido</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t border-gray-200 pt-4 mb-4">
+                  <ul className="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                    {experience.features.map((feature, index) => (
+                      <li key={index} className="flex items-center">
+                        <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-2"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Contenedor que empuja los botones hacia abajo */}
+                <div className="mt-auto">
+                  <div className="flex space-x-3">
+                    <Button variant="outline" className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-100">
+                      Ver Detalles
+                    </Button>
+                    <Button className="flex-1 bg-red-600 hover:bg-red-700">
+                      Reservar Ahora
+                    </Button>
+                  </div>
+
+                  <div className="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500 flex justify-between">
+                    <span>Cancelación gratuita</span>
+                    <span>Sin prepago</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}

@@ -1,107 +1,109 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowDown, Sparkles, Shield } from "lucide-react";
 
 export const LoginHero = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsLoaded(true), 100); // delay de carga inicial
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Fondo degradado animado */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600">
-        {/* Elementos geométricos animados */}
-        <div className="absolute inset-0">
-          {/* Círculos flotantes */}
-          <div className="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-32 w-48 h-48 bg-white/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-32 left-32 w-40 h-40 bg-white/10 rounded-full blur-xl animate-pulse delay-500"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 bg-white/15 rounded-full blur-lg animate-pulse delay-700"></div>
-
-          {/* Formas geométricas */}
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-ping"></div>
-          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white/40 rounded-full animate-ping delay-300"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-white/35 rounded-full animate-ping delay-700"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-2 h-2 bg-white/25 rounded-full animate-ping delay-1000"></div>
-        </div>
-
-        {/* Overlay con gradiente */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
+      {/* Imagen de fondo */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('public/images/imagen de login banner.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80"></div>
       </div>
 
       {/* Contenido principal */}
       <div className="relative z-10 px-6 max-w-4xl mx-auto text-center">
-        {/* Icono principal */}
-        <div className="mb-8 flex justify-center">
+        {/* Icono */}
+        <div
+          className={`mb-8 flex justify-center transform transition-all duration-1000 delay-200 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
           <div className="relative">
-            <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 shadow-2xl border border-white/30">
-              <Shield className="w-10 h-10 text-white" />
+            <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-4 shadow-xl border border-[#F20C1F] hover:border-[#F20C0C] transition-all">
+              <Shield className="w-10 h-10 text-[#F20C1F]" />
             </div>
-            <div className="absolute -top-2 -right-2">
-              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
+            <div className="absolute -top-2 -right-2 bg-white/20 rounded-full p-1 shadow-md">
+              <Sparkles className="w-5 h-5 text-[#F2E205] animate-pulse" />
             </div>
           </div>
         </div>
 
-        {/* Título principal */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+        {/* Título */}
+        <h1
+          className={`text-5xl md:text-7xl font-bold text-white mb-4 leading-tight transform transition-all duration-1000 delay-400 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
           <span className="block">Bienvenido</span>
-          <span className="block bg-gradient-to-r from-yellow-200 to-orange-200 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-[#F20C1F] to-[#F20C0C] bg-clip-text text-transparent">
             de Vuelta
           </span>
         </h1>
 
         {/* Subtítulo */}
-        <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p
+          className={`text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed transform transition-all duration-1000 delay-600 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
           Accede a tu cuenta para gestionar tus reservas y disfrutar de una
           experiencia personalizada
         </p>
 
         {/* Características destacadas */}
-        <div className="flex flex-wrap justify-center gap-6 mb-12">
-          <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-white/90 text-sm font-medium">
-              Acceso Seguro
-            </span>
-          </div>
-          <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300"></div>
-            <span className="text-white/90 text-sm font-medium">
-              Gestión Fácil
-            </span>
-          </div>
-          <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-600"></div>
-            <span className="text-white/90 text-sm font-medium">
-              Experiencia Premium
-            </span>
-          </div>
+        <div
+          className={`flex flex-wrap justify-center gap-5 mb-12 transform transition-all duration-1000 delay-800 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          {[
+            { color: "green", text: "Acceso Seguro", delay: 0 },
+            { color: "blue", text: "Gestión Fácil", delay: 300 },
+            { color: "yellow", text: "Experiencia Premium", delay: 600 },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 border border-[#F20C1F] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              style={{ animationDelay: `${item.delay}ms` }}
+            >
+              <div
+                className={`w-2.5 h-2.5 bg-${item.color}-500 rounded-full animate-pulse`}
+                style={{ animationDelay: `${item.delay}ms` }}
+              ></div>
+              <span className="text-white font-medium text-sm">
+                {item.text}
+              </span>
+            </div>
+          ))}
         </div>
 
-        {/* Indicador de scroll */}
-        <div className="flex flex-col items-center">
-          <p className="text-white/70 text-sm mb-3 font-medium">
+        {/* Flecha animada */}
+        <div
+          className={`flex flex-col items-center transform transition-all duration-1000 delay-1000 ${
+            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          <p className="text-white/80 text-sm mb-3 font-medium">
             Continúa para iniciar sesión
           </p>
           <div className="animate-bounce">
-            <ArrowDown className="w-6 h-6 text-white/60" />
+            <ArrowDown className="w-6 h-6 text-[#F20C1F]" />
           </div>
         </div>
-      </div>
-
-      {/* Elemento decorativo inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-orange-50 to-transparent"></div>
-
-      {/* Ondas decorativas */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-full h-16"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill="#fef7ed"
-            className="opacity-50"
-          />
-        </svg>
       </div>
     </section>
   );
